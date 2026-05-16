@@ -643,7 +643,7 @@ input[type=range]{width:100%;accent-color:var(--blue2);margin:0}
 .login-btn{width:100%;padding:13px;background:#2c5aa0;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s}
 .login-btn:hover{background:#1a3a7e}
 
-/* ── 智能评分 样式 ── */
+/* ── 智能评分 & 说明书评阅 样式 ── */
 .score-card{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:24px;border-radius:10px;margin-bottom:16px}
 .score-value{font-size:56px;font-weight:800;margin:10px 0;text-align:center}
 .score-label{font-size:14px;opacity:.9;text-align:center}
@@ -660,7 +660,28 @@ input[type=range]{width:100%;accent-color:var(--blue2);margin:0}
 .bdg-ok{background:#d4f0db;color:#1a7c3a;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700}
 .bdg-wn{background:#fff3cd;color:#856404;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700}
 .bdg-err{background:#fde8e7;color:#c0392b;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700}
-
+/* 说明书评阅 */
+.rev-upload-zone{border:2px dashed #a0c8f0;border-radius:8px;padding:38px 20px;text-align:center;background:#f8faff;cursor:pointer;transition:.3s}
+.rev-upload-zone:hover{border-color:#1a5fa8;background:#eef5ff}
+.rev-score-banner{background:linear-gradient(135deg,#1a3a5c,#1a5fa8);color:#fff;border-radius:10px;padding:24px;margin-bottom:16px}
+.rev-score-big{font-size:52px;font-weight:800;margin:8px 0}
+.rev-score-sub{font-size:14px;opacity:.88}
+.rev-score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:16px}
+.rev-score-di{background:rgba(255,255,255,.16);padding:10px;border-radius:7px;text-align:center}
+.rev-score-di .dl{font-size:11px;opacity:.85}
+.rev-score-di .dv{font-size:18px;font-weight:800;margin-top:4px}
+.rev-criteria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.rev-criteria-item{background:#f0f6ff;border:1px solid #c0d8f0;border-radius:8px;padding:12px;text-align:center}
+.rev-criteria-item .pct{font-size:28px;font-weight:800;color:#1a5fa8}
+.rev-criteria-item .lbl{font-size:12px;color:#555;margin-top:4px}
+.rev-criteria-item .desc{font-size:11px;color:#888;margin-top:3px;line-height:1.4}
+.ai-loading{display:flex;flex-direction:column;align-items:center;gap:14px;padding:40px}
+.spinner{width:44px;height:44px;border:4px solid #dde;border-top:4px solid #1a5fa8;border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rev-result-table{width:100%;border-collapse:collapse;font-size:13px}
+.rev-result-table th{background:#1a5fa8;color:#fff;padding:8px 10px;text-align:left}
+.rev-result-table td{padding:7px 10px;border-bottom:1px solid #eee}
+.rev-result-table tr:nth-child(even) td{background:#f8faff}
 /* info box */
 .info-box2{background:#fffbea;border:1px solid #f0d96a;border-radius:6px;padding:10px 14px;font-size:12px;color:#5a4800;margin:8px 0;line-height:1.6}
 /* upload zone */
@@ -720,7 +741,7 @@ user-select: none
 <div class="topbar">
   <div class="tb-logo">⚙️</div>
   <div>
-    <div class="tb-title">机械式变速器设计（作业版）</div>
+    <div class="tb-title">机械式变速器设计（课程设计版）</div>
     <div class="tb-sub">广西大学车辆工程专业 ·《汽车设计》课程教学团队</div>
   </div>
   <div id="studentBadge" style="display:none;background:rgba(255,255,255,0.15);padding:5px 14px;border-radius:6px;font-size:.72rem;line-height:1.5">
@@ -734,7 +755,7 @@ user-select: none
     <button class="tab-btn" id="tab-btn-3" onclick="switchTab(3)">⚒ 强度计算</button>
     <button class="tab-btn" id="tab-btn-4" onclick="switchTab(4)">🔩 同步器设计</button>
     <button class="tab-btn" id="tab-btn-5" onclick="switchTab(5)">🏆 智能评分报告</button>
-
+    <button class="tab-btn" id="tab-btn-6" onclick="switchTab(6)">📝 说明书评阅</button>
   </div>
   <div class="tb-right" style="display:flex;gap:8px;align-items:center">
     <button onclick="openTeacherLogin()" style="background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:6px;cursor:pointer;font-size:.72rem;border:1px solid rgba(255,255,255,0.3);color:#f0e8d8;transition:all .2s" onmouseover="this.style.background='rgba(255,255,255,0.28)'" onmouseout="this.style.background='rgba(255,255,255,0.18)'">👨‍🏫 教师管理</button>
@@ -1908,6 +1929,7 @@ function switchTab(n) {
   document.getElementById('tool3-panel').style.display = n===3 ? 'block' : 'none';
   document.getElementById('tool4-panel').style.display = n===4 ? 'block' : 'none';
   document.getElementById('tool5-panel').style.display = n===5 ? 'block' : 'none';
+  document.getElementById('tool6-panel').style.display = n===6 ? 'block' : 'none';
   document.getElementById('tb-ctrl-1').style.display = n===1 ? '' : 'none';
   document.getElementById('tb-ctrl-2').style.display = n===2 ? '' : 'none';
   document.getElementById('tb-ctrl-3').style.display = n===3 ? '' : 'none';
@@ -1917,6 +1939,7 @@ function switchTab(n) {
   document.getElementById('tab-btn-3').classList.toggle('active', n===3);
   document.getElementById('tab-btn-4').classList.toggle('active', n===4);
   document.getElementById('tab-btn-5').classList.toggle('active', n===5);
+  document.getElementById('tab-btn-6').classList.toggle('active', n===6);
   if (n===2) syncToothTool();
   if (n===3) syncStrengthTool();
   if (n===4) syncSynchronizerTool();
@@ -4776,6 +4799,209 @@ function downloadScoreReport(){
   a.style.display='none'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
   alert('评分报告已生成！请将TXT文件提交给教师。');
 }
+
+// ══ 说明书评阅 ══
+function onRevFileSelected(e){
+  var f=e.target.files[0];
+  document.getElementById('revFileName').textContent=f?f.name:'未选择文件';
+  if(f){ var z=document.getElementById('revUploadZone'); z.style.borderColor='#1a7c3a'; z.style.background='#f0fff4'; }
+}
+
+async function extractRevPdfText(arrayBuffer){
+  var pdfjsLib=window['pdfjs-dist/build/pdf'];
+  if(!pdfjsLib) throw new Error('PDF解析库未就绪，请确保设备已联网后刷新重试。');
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  var doc=await pdfjsLib.getDocument({data:arrayBuffer}).promise;
+  var fullText='';
+  for(var i=1;i<=doc.numPages;i++){
+    var page=await doc.getPage(i);
+    var content=await page.getTextContent();
+    var lineMap={};
+    content.items.forEach(function(item){
+      if(!item.str)return;
+      var y=Math.round(item.transform[5]);
+      if(!lineMap[y]) lineMap[y]=[];
+      lineMap[y].push({x:item.transform[4],str:item.str});
+    });
+    var lines=Object.keys(lineMap).sort(function(a,b){return b-a;}).map(function(y){
+      return lineMap[y].sort(function(a,b){return a.x-b.x;}).map(function(t){return t.str;}).join('');
+    });
+    fullText+=lines.join('\n')+'\n';
+  }
+  return fullText.replace(/\n{3,}/g,'\n\n').trim();
+}
+
+function scoreRevReport(text){
+  var R={score_data:0,score_format:0,score_content:0,data_details:[],format_details:[],content_details:[]};
+  var d=getTransmissionCalcData();
+
+  // ─ 数据符合度（70分）─ 按四维度权重分配：传动比14+齿数分配21+强度校核28+同步器7
+  var params=[
+    // ── 传动比设计（14分）──
+    {name:'一档传动比 i_g1',      dim:'传动比设计', kws:['一档传动比','i_g1','ig1','一档比'], val:d.ig1,      unit:'',     tol:0.02, max:7},
+    {name:'档位数',               dim:'传动比设计', kws:['档位','n档','前进档','变速器档位'],  val:d.n_gear,  unit:'档',   tol:0.0,  max:4},
+    {name:'最高车速 u_max',        dim:'传动比设计', kws:['最高车速','最大车速','u_max','设计车速'], val:d.u_max, unit:'km/h', tol:0.03, max:3},
+    // ── 齿数分配（21分）──
+    {name:'变速器中心距 A',        dim:'齿数分配',   kws:['中心距',' A ','A=','A≈'],             val:d.A,       unit:'mm',   tol:0.02, max:8},
+    {name:'一档实际传动比（齿数验算）',dim:'齿数分配',kws:['实际传动比','验算','齿数比','实际比值'], val:d.ig1_tooth,unit:'',   tol:0.02, max:8},
+    {name:'主减速比 i₀',          dim:'齿数分配',   kws:['主减速比','i0','i₀','主传动比'],        val:d.i0,     unit:'',     tol:0.02, max:5},
+    // ── 强度校核（28分）──
+    {name:'发动机最大扭矩 Temax',  dim:'强度校核',   kws:['发动机','最大扭矩','Temax','T_e'],     val:d.T_emax,  unit:'N·m', tol:0.02, max:8},
+    {name:'整车重力 G',            dim:'强度校核',   kws:['整车重力','满载',' G ','车重'],        val:d.G,       unit:'N',    tol:0.03, max:6},
+    {name:'附着系数 φ',            dim:'强度校核',   kws:['附着系数','φ','phi','附着'],           val:d.phi,     unit:'',     tol:0.02, max:5},
+    {name:'许用弯曲应力 [σW]',     dim:'强度校核',   kws:['许用弯曲','弯曲应力','σW','[σw]','σ_W','弯曲许用'], val:d.sw_s||d.sw_h, unit:'MPa', tol:0.03, max:5},
+    {name:'许用接触应力 [σJ]',     dim:'强度校核',   kws:['许用接触','接触应力','σJ','σH','接触许用'],          val:d.sj_H||d.sj_L, unit:'MPa', tol:0.03, max:4},
+    // ── 同步器设计（7分）──
+    {name:'同步环锁止角 β',        dim:'同步器设计', kws:['锁止角','β','beta','锁止'],            val:d.sync_beta, unit:'°',  tol:0.05, max:4},
+    {name:'锥面摩擦因数 f',        dim:'同步器设计', kws:['摩擦因数','摩擦系数',' f ','f='],      val:d.sync_f,   unit:'',    tol:0.05, max:3},
+  ];
+
+  params.forEach(function(p2){
+    if(!p2.val||p2.val===0){R.data_details.push({item:p2.name,expected:'（未计算）',found:'—',status:'skip',score:0,max:p2.max});return;}
+    var ref=p2.val,foundVal=null,candidates=[];
+    p2.kws.forEach(function(kw){
+      var re2=new RegExp(kw.trim(),'gi');var km;
+      while((km=re2.exec(text))!==null){
+        var win=text.slice(Math.max(0,km.index-80),Math.min(text.length,km.index+300));
+        var nums=win.match(/[0-9]+(?:\.[0-9]+)?/g)||[];
+        nums.forEach(function(nStr){var v=parseFloat(nStr);if(ref>50&&v<5)return;if(ref>1&&v<0.001)return;candidates.push(v);});
+      }
+    });
+    var score=0,status='miss';
+    if(candidates.length>0){
+      foundVal=candidates.reduce(function(best,v){return Math.abs(v-ref)<Math.abs(best-ref)?v:best;});
+      var diff=Math.abs(foundVal-ref)/Math.max(Math.abs(ref),0.001);
+      if(diff<=p2.tol){score=p2.max;status='ok';}
+      else if(diff<=p2.tol*2.5){score=Math.round(p2.max*0.55);status='warn';}
+      else{score=Math.round(p2.max*0.2);status='err';}
+    }
+    R.score_data+=score;
+    R.data_details.push({dim:p2.dim||'',item:p2.name,expected:typeof p2.val==='number'?p2.val.toFixed(3)+' '+p2.unit:p2.val+' '+p2.unit,found:foundVal!==null?foundVal.toString()+' '+p2.unit:'未提及',status:status,score:score,max:p2.max});
+  });
+  R.score_data=Math.min(70,R.score_data);
+
+  // ─ 内容质量（20分）─
+  var ctChecks=[
+    {name:'参考文献/国标引用',desc:'引用《汽车设计》教材及相关标准',max:5,fn:function(){var n=(text.match(/GB[\\/T\s]*\d+|国家标准|汽车设计|参考文献/gi)||[]).length;return n>=3?5:n>=1?3:0;}},
+    {name:'计算过程完整',desc:'公式推导、数据代入、求解过程',max:5,fn:function(){return(/公式|代入|求得|计算得|由.*得/.test(text)?3:0)+(/步骤|由式|代入/.test(text)?2:0);}},
+    {name:'设计分析深度',desc:'方案分析、校核验证、合理性论述',max:5,fn:function(){var ks=['分析','合理性','满足','校核','传动比','齿数','同步器','中心距','模数','压力角','螺旋角','强度'];return Math.min(5,Math.round(ks.filter(function(k){return text.includes(k);}).length*0.55));}},
+    {name:'内容充实度',desc:'正文字数（≥5000字满分）',max:5,fn:function(){var n=text.replace(/\s/g,'').length;return n>=5000?5:n>=3000?4:n>=1500?2:1;}},
+  ];
+  ctChecks.forEach(function(c){var s=Math.min(c.max,c.fn());R.score_content+=s;R.content_details.push({name:c.name,desc:c.desc,score:s,max:c.max});});
+  R.score_content=Math.min(20,R.score_content);
+
+  // ─ 排版格式规范（10分）─
+  var fmtChecks=[
+    {name:'章节结构完整',desc:'含绪论、设计计算、结论、参考文献',max:3,fn:function(){return(/绪论|前言|概述/.test(text)?1:0)+(/计算|设计计算/.test(text)?1:0)+(/结论|总结/.test(text)?0.5:0)+(/参考文献/.test(text)?0.5:0);}},
+    {name:'图表编号规范',desc:'"图x"和"表x"编号',max:2,fn:function(){return(/图\s*\d+/.test(text)?1:0)+(/表\s*\d+/.test(text)?1:0);}},
+    {name:'公式编号',desc:'括号形式公式编号',max:2,fn:function(){return/[（(]\s*\d+[-\d]*\s*[）)]|式[（(]/.test(text)?2:0;}},
+    {name:'单位规范',desc:'正确使用SI单位',max:2,fn:function(){var us=['N·m','N/mm','MPa','mm','kN','r/min','km/h','N'];return Math.min(2,us.filter(function(u){return text.includes(u);}).length>=3?2:1);}},
+    {name:'标题层次清晰',desc:'多级标题结构',max:1,fn:function(){return/^[一二三四五六七八九十]+[、.．]|^\d+\s+[\u4e00-\u9fff]/m.test(text)?1:0;}},
+  ];
+  fmtChecks.forEach(function(c){var s=Math.round(c.fn());R.score_format+=s;R.format_details.push({name:c.name,desc:c.desc,score:s,max:c.max});});
+  R.score_format=Math.min(10,R.score_format);
+
+  R.total=R.score_data+R.score_content+R.score_format;
+  return R;
+}
+
+async function gradeRevReport(){
+  var fileInput=document.getElementById('revFile');
+  if(!fileInput.files||!fileInput.files[0]){alert('请先选择说明书 PDF 文件！');return;}
+  var res=document.getElementById('revGradeResult');
+  document.getElementById('revBtnArea').style.pointerEvents='none';
+  res.innerHTML='<div class="scoring-panel"><div class="ai-loading"><div class="spinner"></div><div style="font-size:14px;color:#1a5fa8;font-weight:700">正在提取 PDF 文字，请稍候…</div></div></div>';
+  try{
+    if(!window['pdfjs-dist/build/pdf']){
+      var s=document.createElement('script');
+      s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      await new Promise(function(res2,rej){s.onload=res2;s.onerror=rej;document.head.appendChild(s);});
+      await new Promise(function(r){setTimeout(r,500);});
+    }
+    var ab=await fileInput.files[0].arrayBuffer();
+    var text=await extractRevPdfText(ab);
+    if(text.length<50) throw new Error('未能提取到文字。请确认PDF含可选中文字（非纯扫描图片）。');
+    var r=scoreRevReport(text);
+    window._lastRevGrade=r;
+    renderRevGrade(r,text);
+  }catch(err){
+    res.innerHTML='<div class="scoring-panel"><div style="background:#fde8e7;border:1px solid #c0392b;border-radius:7px;padding:14px;color:#c0392b"><b>❌ 评阅失败：</b>'+err.message+'</div></div>';
+  }
+  document.getElementById('revBtnArea').style.pointerEvents='';
+}
+
+function renderRevGrade(r,text){
+  var grade=r.total>=90?'优秀':r.total>=80?'良好':r.total>=70?'中等':r.total>=60?'及格':'不及格';
+  var statusIcon={ok:'<span class="bdg-ok">✓ 一致</span>',warn:'<span class="bdg-wn">△ 偏差</span>',err:'<span class="bdg-err">✗ 差异大</span>',miss:'<span style="color:#999">— 未提及</span>',skip:'<span style="color:#aaa">— 跳过</span>'};
+  var dimColors={'传动比设计':'#667eea','齿数分配':'#11998e','强度校核':'#f093fb','同步器设计':'#f5a623'};
+  var dataRows=r.data_details.map(function(d2){
+    var cls=d2.score===d2.max?'bdg-ok':d2.score>0?'bdg-wn':'bdg-err';
+    var dimColor=dimColors[d2.dim]||'#666';
+    return '<tr><td style="font-size:11px;color:'+dimColor+';font-weight:700;white-space:nowrap">'+(d2.dim||'')+'</td><td>'+d2.item+'</td><td style="font-family:monospace">'+d2.expected+'</td><td style="font-family:monospace">'+d2.found+'</td><td>'+statusIcon[d2.status]+'</td><td style="text-align:center"><span class="'+cls+'">'+d2.score+'/'+d2.max+'</span></td></tr>';
+  }).join('');
+  var ctRows=r.content_details.map(function(d2){var cls=d2.score===d2.max?'bdg-ok':d2.score>0?'bdg-wn':'bdg-err';return '<tr><td><b>'+d2.name+'</b></td><td style="font-size:12px;color:#666">'+d2.desc+'</td><td style="text-align:center"><span class="'+cls+'">'+d2.score+'/'+d2.max+'</span></td></tr>';}).join('');
+  var fmtRows=r.format_details.map(function(d2){var cls=d2.score===d2.max?'bdg-ok':d2.score>0?'bdg-wn':'bdg-err';return '<tr><td><b>'+d2.name+'</b></td><td style="font-size:12px;color:#666">'+d2.desc+'</td><td style="text-align:center"><span class="'+cls+'">'+d2.score+'/'+d2.max+'</span></td></tr>';}).join('');
+  var wc=text.replace(/\s/g,'').length;
+  document.getElementById('revGradeResult').innerHTML=`
+  <div class="rev-score-banner">
+    <div class="rev-score-sub">机械式变速器设计说明书评阅总分</div>
+    <div class="rev-score-big">${r.total}</div>
+    <div style="font-size:20px;font-weight:700;margin-top:4px">${grade}</div>
+    <div class="rev-score-sub">${_appState.studentName||'—'} · ${_appState.studentId||'—'}</div>
+    <div class="rev-score-grid">
+      <div class="rev-score-di"><div class="dl">数据符合度</div><div class="dv">${r.score_data}/70</div></div>
+      <div class="rev-score-di"><div class="dl">内容质量</div><div class="dv">${r.score_content}/20</div></div>
+      <div class="rev-score-di"><div class="dl">排版格式规范</div><div class="dv">${r.score_format}/10</div></div>
+      <div class="rev-score-di"><div class="dl">正文字数</div><div class="dv">${wc}</div></div>
+    </div>
+  </div>
+  <div class="scoring-panel">
+    <h3>📊 数据符合度明细（${r.score_data}/70）</h3>
+    <div style="margin-bottom:8px;font-size:12px;color:#666">按四维度权重分布：传动比设计14分 · 齿数分配21分 · 强度校核28分 · 同步器设计7分</div>
+    <table class="rev-result-table"><thead><tr><th>维度</th><th>参数</th><th>工具计算值</th><th>说明书中的值</th><th>一致性</th><th>得分</th></tr></thead><tbody>${dataRows}</tbody></table>
+    <div style="margin-top:8px;font-size:12px;color:#888">容差规则：偏差≤2%得满分；2%~5%得55%分；＞5%得20%分；未提及得0分</div>
+  </div>
+  <div class="scoring-panel">
+    <h3>💡 内容质量明细（${r.score_content}/20）</h3>
+    <table class="rev-result-table"><thead><tr><th>检查项目</th><th>说明</th><th>得分</th></tr></thead><tbody>${ctRows}</tbody></table>
+  </div>
+  <div class="scoring-panel">
+    <h3>📝 排版格式规范明细（${r.score_format}/10）</h3>
+    <table class="rev-result-table"><thead><tr><th>检查项目</th><th>说明</th><th>得分</th></tr></thead><tbody>${fmtRows}</tbody></table>
+  </div>`;
+  document.getElementById('revDownloadArea').style.display='block';
+}
+
+function generateRevReportFile(){
+  var r=window._lastRevGrade; if(!r){alert('请先完成评阅！');return;}
+  var grade=r.total>=90?'优秀':r.total>=80?'良好':r.total>=70?'中等':r.total>=60?'及格':'不及格';
+  var today=new Date().toISOString().slice(0,10);
+  var report='===============================================\n   机械式变速器设计 说明书评阅报告\n   广西大学车辆工程专业《汽车设计》课程教学团队\n===============================================\n\n';
+  report+='学号：'+_appState.studentId+'\n姓名：'+_appState.studentName+'\n提交时间：'+new Date().toLocaleString('zh-CN')+'\n\n';
+  report+='总分：'+r.total+' / 100  （'+grade+'）\n数据符合度：'+r.score_data+' / 70\n内容质量：'+r.score_content+' / 20\n排版格式规范：'+r.score_format+' / 10\n\n';
+  report+='【数据符合度明细】\n';
+  r.data_details.forEach(function(d2){report+=d2.item+' | 参考：'+d2.expected+' | 说明书：'+d2.found+' | 得分：'+d2.score+'/'+d2.max+'\n';});
+  report+='\n【内容质量明细】\n';
+  r.content_details.forEach(function(d2){report+=d2.name+' | '+d2.desc+' | 得分：'+d2.score+'/'+d2.max+'\n';});
+  report+='\n【排版格式规范明细】\n';
+  r.format_details.forEach(function(d2){report+=d2.name+' | '+d2.desc+' | 得分：'+d2.score+'/'+d2.max+'\n';});
+  report+='\n--- SYSTEM DATA BEGIN ---\n';
+  var jsonData={studentId:_appState.studentId,studentName:_appState.studentName,timestamp:new Date().toISOString(),reportType:'transmission_report_grade',totalScore:r.total,grade:grade,scores:{data:r.score_data,content:r.score_content,format:r.score_format},details:r.data_details};
+  report+=JSON.stringify(jsonData,null,2);
+  report+='\n--- SYSTEM DATA END ---\n';
+  var blob=new Blob([report],{type:'text/plain;charset=utf-8'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=_appState.studentId+'_'+_appState.studentName+'_机械式变速器设计_说明书评阅报告_'+today+'.txt';
+  a.style.display='none'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  alert('说明书评阅报告已生成！请将此 TXT 文件提交给教师。');
+}
+
+// 添加 pdf.js CDN 脚本（说明书评阅所需）
+(function(){
+  var s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+  document.head.appendChild(s);
+})();
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', e => {
 if (e.key === 'F12' || 
@@ -4786,8 +5012,6 @@ e.preventDefault();
 return false;
 }
 });
-
-
 
 </script>
 
@@ -5238,6 +5462,38 @@ return false;
   <div id="scoreReportResult"></div>
 </div>
 
+<!-- ══ TOOL 6: 说明书评阅 ══ -->
+<div id="tool6-panel" style="display:none;min-height:calc(100vh - 52px);padding:20px;max-width:1000px;margin:0 auto">
+  <div class="scoring-panel">
+    <h3>📝 机械式变速器设计说明书智能评阅</h3>
+    <div class="info-box2">
+      <strong>使用说明：</strong>上传设计说明书PDF文件，系统将自动提取文字，与本工具计算结果进行比对，给出评阅报告。<br>
+      评阅范围：<b>数据符合度（70分）</b>+ <b>内容质量（20分）</b>+ <b>排版格式规范（10分）</b>= 共100分
+    </div>
+    <div class="rev-criteria-grid">
+      <div class="rev-criteria-item"><div class="pct">70%</div><div class="lbl">数据符合度</div><div class="desc">说明书计算数据与工具结果比对（传动比14分·齿数分配21分·强度校核28分·同步器7分；偏差≤2%得满分）</div></div>
+      <div class="rev-criteria-item"><div class="pct">20%</div><div class="lbl">内容质量</div><div class="desc">参考文献引用、计算过程完整性、设计分析深度、正文充实度</div></div>
+      <div class="rev-criteria-item"><div class="pct">10%</div><div class="lbl">排版格式规范</div><div class="desc">章节结构、图表编号、公式编号、单位规范、标题层次</div></div>
+    </div>
+  </div>
+  <div class="scoring-panel">
+    <h3>📂 上传说明书 PDF</h3>
+    <input type="file" id="revFile" accept=".pdf" style="display:none" onchange="onRevFileSelected(event)">
+    <div class="rev-upload-zone" id="revUploadZone" onclick="document.getElementById('revFile').click()">
+      <div style="font-size:44px;margin-bottom:10px">📄</div>
+      <div style="font-size:15px;font-weight:700;color:#1a5fa8">点击选择 或 拖拽 PDF 文件</div>
+      <div style="font-size:13px;color:#888;margin-top:6px">仅支持含可选中文字的 PDF（非扫描图片）</div>
+    </div>
+    <div style="margin-top:10px;font-size:13px;color:#555">已选文件：<b id="revFileName">未选择</b></div>
+    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap" id="revBtnArea">
+      <button onclick="gradeRevReport()" style="padding:10px 22px;background:#2c5aa0;color:#fff;border:none;border-radius:6px;font-weight:700;cursor:pointer;font-size:14px">🔍 开始评阅</button>
+    </div>
+  </div>
+  <div id="revGradeResult"></div>
+  <div id="revDownloadArea" style="display:none;margin-top:10px">
+    <button onclick="generateRevReportFile()" style="padding:10px 22px;background:#1a7c3a;color:#fff;border:none;border-radius:6px;font-weight:700;cursor:pointer;font-size:14px">📥 下载说明书评阅报告 TXT</button>
+  </div>
+</div>
 <script>
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('keydown', e => {
@@ -5250,7 +5506,6 @@ return false;
     }
   });
 </script>
-
 
 </body>
 </html>
